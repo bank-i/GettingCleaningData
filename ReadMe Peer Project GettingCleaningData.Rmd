@@ -1,0 +1,42 @@
+---
+title: "ReadMe GettingAndCleaning Peer Project"
+author: "IEM Bank"
+date: "Friday, August 22, 2014"
+output: word_document
+---
+
+#STEP 1: Read label and variable information into R with read.table()
+-feature.txt                    --> 'feature'
+-activity_labels.txt            -->'activitylabels'
+
+#Step 2: Read TEST-data into R and apply variablenames and subjectlabels
+-X_test.txt                     --> 'data_test'
+-add variablenames (from feature dataset) to 'data_test'
+-subjects_test.txt              --> 'subjects_test'
+        -add subject-identifier (subjects_test$V1) to 'data_test'
+- y_test.txt                   --> 'labels_test'
+        -add activity labels (labels_test$V1) to 'data_test'as column 'activity'
+
+##Step 3:  does the same for TRAIN-data as step 2 for TEST-data  
+#Step 3: Read TRAIN-data into R and apply variablenames and subjectlabels
+-x_train.txt                     --> 'data_train'
+-add variablenames (from feature dataset) to 'data_train'
+-subjects_train.txt              --> 'subjects_train'
+        -add subject-identifier (subjects_train$V1) to 'data_train'
+- y_train.txt                   --> 'labels_train'
+        -add activity labels (labels_train$V1) to 'data_train'as column 'activity'
+        
+#STEP 4: Merge test & train datasets to create one dataframe (DF).
+I used rbind() function, because the train and test datasets contain exactly the same variables, but information on different observations (and different subjects)
+
+#STEP 5: Extract only columns with measurements on mean and standard deviation for each measurement
+I made a vector(named "subset") of the columnnumbers containing mean() or std() of each different measurement, plus information on labels and subject.
+Than I subsetted the complete dataset DF, extraction only columns as described in vector "subset"
+
+# STEP 6: Assign descriptive activity names to name the activities in the data set
+I turned the column 'activity' in to a factor variable assigning labels (similar to those in activitylabels-dataframe (activity_labels.txt)) to the resulting factor
+
+#STEP 7; Appropriately label the data set with descriptive variable names. 
+Remove all symbols with gsub() function.
+
+#STEP 8; write a .txt file
